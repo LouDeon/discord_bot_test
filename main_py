@@ -1,0 +1,53 @@
+# bot.py
+import os
+import random
+
+import discord
+from dotenv import load_dotenv
+
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD = os.getenv('DISCORD_GUILD')
+
+client = discord.Client()
+
+
+@client.event
+async def on_ready():
+    for guild in client.guilds:
+        if guild.name == GUILD:
+            break
+
+
+@client.event
+async def on_ready():
+    print('testbot69 is here to party')
+
+# responding to words
+
+
+@client.event
+async def on_message(message):
+    if client.user.id != message.author.id:
+
+        if 'space' in message.content:
+            await message.channel.send('https://stsci-opo.org/STScI-01FS23JYK43CRGYMQQHE1ZVE8C.png')
+        if 'wq' in message.content:
+            await message.channel.send('the :crown: witch :broom: queen :crown:  S A V A T H U S S Y  :weary: :sweat_drops:')
+        if 'hello' in message.content:
+            await message.channel.send('hi loser')
+        # elif to only use one
+        if message.content == 'heart':
+            random_emote = [
+                ':heart_decoration:',
+                ':heart:',
+                ':green_heart:',
+                (
+                    'jk '
+                    'lmao'
+                ),
+            ]
+            response = random.choice(random_emote)
+            await message.channel.send(response)
+
+client.run(TOKEN)
